@@ -1,0 +1,50 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.12'
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('springCloudVersion', "2021.0.4")
+}
+
+dependencies {
+    implementation 'org.apache.camel.springboot:camel-spring-boot-starter:3.18.1'
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    implementation 'org.springframework.kafka:spring-kafka'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'org.springframework.boot:spring-boot-starter-activemq:2.6.12'
+    implementation 'org.apache.activemq:activemq-broker:5.17.2'
+    implementation 'org.springframework.shell:spring-shell-starter:2.1.2'
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:3.1.4'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:2.6.12'
+    implementation 'com.playtika.sleuth:sleuth-camel-core:2.1.0'
+    implementation 'org.springframework.boot:spring-boot-starter-logging:2.6.12'
+
+
+
+
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
